@@ -10,10 +10,6 @@ fish_add_path /Users/fheinrich/.antigravity/antigravity/bin
 # bun
 set --export BUN_INSTALL "$HOME/.bun"
 set --export PATH $BUN_INSTALL/bin $PATH
-
-# bun
-set --export BUN_INSTALL "$HOME/.bun"
-set --export PATH $BUN_INSTALL/bin $PATH
 set -gx PATH "/opt/homebrew/bin" $PATH
 
 # Added by Antigravity IDE
