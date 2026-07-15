@@ -1,0 +1,29 @@
+[mgr]
+prepend_keymap = [
+  { on = "!", for = "unix", run = 'shell "$SHELL" --block', desc = "Open $SHELL here" },
+  { on = "!", for = "windows", run = 'shell "powershell.exe" --block', desc = "Open PowerShell here" },
+  { on = "d", run = "shell 'trash-put \"$@\"' --confirm", desc = "[D]elete (Trash)" },
+  { on = "u", run = "plugin restore", desc = "[U]ndo (Restore from trash)" },
+  { on = "U", run = "plugin restore -- --interactive", desc = "[U]ndo (Restore from trash - Interactive)" },
+  { on = [
+    "g",
+    "l",
+  ], run = "plugin lazygit", desc = "[G]o [L]azygit" },
+  { on = [
+    "g",
+    "c",
+  ], run = "cd ~/.dotfiles", desc = "[G]o to [D]otfiles" },
+
+  # Custom Go To Keybinds
+  { on = [
+    "g",
+    "j",
+  ], run = "cd ~/Downloads/", desc = "[G]o to Downloads" },
+  { on = [
+    "g",
+    "d",
+  ], run = 'cd "~/Google Drive/My Drive/Documents"', desc = "[G]o to [Documents]" },
+]
+
+[input]
+prepend_keymap = [{ on = "<Esc>", run = "close", desc = "Cancel input" }]
