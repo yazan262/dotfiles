@@ -1,68 +1,61 @@
-# My Dotfiles
+# Dotfiles
 
-## Prerequisites
+Meine persönlichen Configs. Setup auf neuem Mac in ein paar Schritten.
 
-- Basic utils: `git`, `make`, `unzip`, C Compiler (`gcc`)
-- CLI utils: `fzf`
-- Language Setup: `npm`, `go`
-- [ripgrep](https://github.com/BurntSushi/ripgrep#installation),
-- [fd-find](https://github.com/sharkdp/fd#installation)
+## 1. Homebrew installieren
 
-## Installation and Setup
-
-### Cloning the Repo
-
-1. clone the repo
 ```bash
-git clone git@github.com:fheinrich03/.dotfiles.git ~/.dotfiles
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-2. Backup or delete your config that you want to replace
-- e.g. if you want to use this ghostty and tmux config
-- then remove or backup your `~/.config/ghostty` and `~/.config/tmux` config
+## 2. Repo klonen
 
-### Adding Symlinks
-
-3. add symlinks from `.config/` to `.dotfiles/`
-> for this we will use `stow` following [this example](https://tamerlan.dev/how-i-manage-my-dotfiles-using-gnu-stow/)
-
-all you need to do is install stow and link the `.dotfiles/` folder to the parent folder
 ```bash
-cd ~/.dotfiles # make sure you are in dotfiles folder (which you cloned before)
+mkdir -p ~/repos
+git clone https://github.com/yazan262/dotfiles.git ~/repos/dotfiles
+ln -s ~/repos/dotfiles ~/.dotfiles
+```
+
+## 3. Pakete installieren (Brewfile)
+
+Installiert alle Apps/CLI-Tools, die ich normalerweise nutze.
+
+```bash
+cd ~/.dotfiles
+brew bundle install --file=Brewfile
+```
+
+## 4. Configs verlinken (Stow)
+
+Vor dem Verlinken: bestehende Configs, die ersetzt werden, sichern oder löschen (z.B. `~/.config/nvim`, `~/.config/fish`).
+
+```bash
+cd ~/.dotfiles
 stow .
 ```
 
-### Module Specific Setups
+Das legt Symlinks von `~/.config/*` auf `~/.dotfiles/.config/*` an.
 
-4. Some configs may require additional setup or installation of tools
-- for that check each `README.md`
+## 5. Raycast-Settings zurückholen
 
+1. Raycast öffnen → `Cmd+,` → Tab **Advanced**
+2. **Import** klicken
+3. Datei wählen: `~/.dotfiles/.config/raycast/raycast-backup.rayconfig`
 
-## List of Tools and Plugins
+## Enthaltene Configs
 
-### Font
-- Some of the configs require a nerdfont to be installed
-- I recommend installing a nerd font of choice and enable it in `ghostty/config`
-- The Font that I use in my configs is `Jetbrains Mono Nerd Font`
+| Tool | Ordner |
+|---|---|
+| fish (Shell) | `.config/fish` |
+| ghostty (Terminal) | `.config/ghostty` |
+| nvim | `.config/nvim` |
+| tmux | `.config/tmux` |
+| yazi (File-Explorer) | `.config/yazi` |
+| karabiner | `.config/karabiner` |
+| zed | `.config/zed` |
+| raycast | `.config/raycast` |
 
-### Theme
-- The Theme that I use on all modules is [cyberdream](https://github.com/scottmckendry/cyberdream.nvim?tab=readme-ov-file)
-- It is a neovim plugin but it can also be used for terminal emulator, shell, tmux etc.
-- See instructions in cyberdream README or in the appropriate dotfile module Readme
+## Sonstiges
 
-### Terminal Applications Tools
-
-- **neovim**: Powerful Editor for the terminal
-- **lazygit**: Git UI with vim like keybinds for fast Git actions for the terminal
-- **yazi**: Basically Finder on crack for the Terminal
-- **zoxide**: Better `cd` command with guessing based on your cd history
-- **stow**: Symlink Farm Manager - setup dotfiles once and never worry about it again
-
-
-### CLI Tools
-
-- **fzf**: Fuzzy Finder
-- **rg**: Ripgrep - Efficient Text search
-
-### Mentions
-- The nvim configuration is based on [kickstart-modular.nvim](https://github.com/dam9000/kickstart-modular.nvim)
+- Font: `Jetbrains Mono Nerd Font` — nötig für Icons in nvim/ghostty/tmux
+- Theme: [cyberdream](https://github.com/scottmckendry/cyberdream.nvim)
