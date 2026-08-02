@@ -1,5 +1,6 @@
 # options
 term=xterm-256color
+macos-option-as-alt = true
 font-family = "JetBrains Mono"
 font-size = 16
 
